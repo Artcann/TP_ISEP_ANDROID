@@ -7,14 +7,17 @@ import android.os.Bundle;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.moneytracker.domain.viewModels.WordViewModel;
-import com.example.moneytracker.infrastructure.entities.Word;
-import com.example.moneytracker.presentation.WordListAdapter;
+import com.example.moneytracker.domain.enums.ExpenseType;
+import com.example.moneytracker.domain.viewModels.ExpenseViewModel;
+import com.example.moneytracker.infrastructure.entities.Expense;
+import com.example.moneytracker.presentation.ExpenseListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private WordViewModel wordViewModel;
+    private ExpenseViewModel expenseViewModel;
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
@@ -24,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final WordListAdapter adapter = new WordListAdapter(new WordListAdapter.WordDiff());
+        final ExpenseListAdapter adapter = new ExpenseListAdapter(new ExpenseListAdapter.ExpenseDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        wordViewModel = new ViewModelProvider(this).get(WordViewModel.class);
+        expenseViewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
 
-        wordViewModel.getAllWords().observe(this, adapter::submitList);
+        expenseViewModel.getAllExpenses().observe(this, adapter::submitList);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener( view -> {
@@ -43,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
-            wordViewModel.insert(word);
+            Expense expense = new Expense(data.getStringExtra(NewWordActivity.EXTRA_REPLY), ExpenseType.FOOD, new Date(), 21.0);
+            expenseViewModel.insert(expense);
         } else {
             Toast.makeText(
                     getApplicationContext(),
