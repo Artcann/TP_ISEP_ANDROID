@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ExpenseViewModel expenseViewModel;
 
-    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+    public static final int NEW_EXPENSE_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +39,14 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener( view -> {
             Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
-            startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+            startActivityForResult(intent, NEW_EXPENSE_ACTIVITY_REQUEST_CODE);
         });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+        if(requestCode == NEW_EXPENSE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             Expense expense = new Expense(data.getStringExtra(NewWordActivity.EXTRA_REPLY),
                     ExpenseType.valueOf(data.getStringExtra("spinner")),
                     new Date(),
