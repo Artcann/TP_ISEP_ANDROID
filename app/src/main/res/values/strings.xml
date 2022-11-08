@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">MoneyTracker</string>
     <string name="add_word">word</string>
-    <string name="hint_word">Word…</string>
+    <string name="hint_word">Titre de la dépense…</string>
+    <string name="hint_ammount">Montant de la dépense…</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="expense_ammount">%1$f %2$s</string>
 </resources>

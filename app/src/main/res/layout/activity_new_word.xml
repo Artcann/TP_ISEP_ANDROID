@@ -15,6 +15,27 @@
         android:layout_margin="@dimen/big_padding"
         android:textSize="18sp" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="64dp"
+        android:layout_margin="@dimen/big_padding"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/edit_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_padding"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_ammount"
+        android:inputType="number"
+        android:minHeight="@dimen/min_height"
+        android:textSize="18sp" />
+
+
+
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"

@@ -13,6 +13,7 @@ import com.example.moneytracker.infrastructure.entities.Expense;
 import com.example.moneytracker.presentation.ExpenseListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,7 +47,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Expense expense = new Expense(data.getStringExtra(NewWordActivity.EXTRA_REPLY), ExpenseType.FOOD, new Date(), 21.0);
+            Expense expense = new Expense(data.getStringExtra(NewWordActivity.EXTRA_REPLY),
+                    ExpenseType.valueOf(data.getStringExtra("spinner")),
+                    new Date(),
+                    Double.valueOf(data.getStringExtra("amount")));
             expenseViewModel.insert(expense);
         } else {
             Toast.makeText(

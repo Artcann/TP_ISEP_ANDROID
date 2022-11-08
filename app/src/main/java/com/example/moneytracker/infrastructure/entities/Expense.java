@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.example.moneytracker.domain.enums.ExpenseType;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -22,6 +23,7 @@ public class Expense {
     @ColumnInfo(name = "TYPE")
     private ExpenseType expenseType;
 
+    //Utilisation de Date dépréciée, préférez LocalDate. On utilise Date ici par soucis de compatibilité avec le SDK qui se fait vieux.
     @ColumnInfo(name = "EXPENSE_DATE")
     private Date date;
 

@@ -22,7 +22,7 @@ public class ExpenseListAdapter extends ListAdapter<Expense, ExpenseViewHolder> 
     @Override
     public void onBindViewHolder(ExpenseViewHolder holder, int position) {
         Expense current = getItem(position);
-        holder.bind(current.getLabel());
+        holder.bind(current);
     }
 
     public static class ExpenseDiff extends DiffUtil.ItemCallback<Expense> {
